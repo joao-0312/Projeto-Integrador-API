@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Projeto_Integrador_API.Models;
+using Projeto_Integrador_API.Services;
 
 namespace Projeto_Integrador_API.Controllers;
 
@@ -7,11 +8,20 @@ namespace Projeto_Integrador_API.Controllers;
 [Route("[controller]")]
 public class UsuarioController : ControllerBase
 {
+    private readonly IUsuarioService _usuarioService;
+
+    public UsuarioController(IUsuarioService service)
+    {
+        _usuarioService = service;
+    }
+
     //Método temporário criado para testes.
     [HttpGet]
     [Route("ObterUsuarios")]
-    public List<Usuario> ObterUsuarios()
+    public async Task<IActionResult> ObterUsuarios()
     {
-        return new List<Usuario>();
+        var usuarios = await _usuarioService.ObterUsuarios();
+
+        return Ok(usuarios);
     }
 }
