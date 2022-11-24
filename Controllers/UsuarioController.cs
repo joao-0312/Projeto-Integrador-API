@@ -15,13 +15,50 @@ public class UsuarioController : ControllerBase
         _usuarioService = service;
     }
 
-    //Método temporário criado para testes.
     [HttpGet]
     [Route("ObterUsuarios")]
     public async Task<IActionResult> ObterUsuarios()
     {
-        var usuarios = await _usuarioService.ObterUsuarios();
+        try 
+        {
+            var usuarios = await _usuarioService.ObterUsuarios();
 
-        return Ok(usuarios);
+            return Ok(usuarios);
+        }
+        catch (Exception ex)
+        {
+            return  BadRequest(ex.Message);
+        }
+    }
+
+    [HttpGet]
+    [Route("BuscarUsuario")]
+    public async Task<IActionResult> BuscarUsuario(int id)
+    {
+        try
+        {
+            Usuario usuario = await _usuarioService.BuscarUsuario(id);
+            return Ok(usuario);
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpPost]
+    [Route("CriarUsuario")]
+    public async Task<IActionResult> CriarUsuario(Usuario usuario)
+    {
+        try
+        {
+            await _usuarioService.CriarUsuario(usuario);
+            
+            return Ok("Conta criada com sucesso.");
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }
