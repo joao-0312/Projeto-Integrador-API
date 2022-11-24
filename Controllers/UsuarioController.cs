@@ -39,7 +39,7 @@ public class UsuarioController : ControllerBase
         {
             await _usuarioService.CriarUsuario(usuario);
             
-            return Ok();
+            return Ok("Conta criada com sucesso.");
         }
         catch(Exception ex)
         {
