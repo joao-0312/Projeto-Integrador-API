@@ -57,7 +57,7 @@ namespace Projeto_Integrador_API.Services
                 mensagensErro.Add("Insira seu gênero."); 
 
             if(mensagensErro.Count > 0)
-                throw new Exception(String.Join(';', mensagensErro));
+                throw new Exception(String.Join(" | ", mensagensErro));
             
             return true;
         }
