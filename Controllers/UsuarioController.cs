@@ -30,4 +30,20 @@ public class UsuarioController : ControllerBase
             return  BadRequest(ex.Message);
         }
     }
+
+    [HttpPost]
+    [Route("CriarUsuario")]
+    public async Task<IActionResult> CriarUsuario(Usuario usuario)
+    {
+        try
+        {
+            await _usuarioService.CriarUsuario(usuario);
+            
+            return Ok();
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }
