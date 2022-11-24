@@ -22,6 +22,16 @@ namespace Projeto_Integrador_API.Services
             return usuarios;
         }
 
+        public async Task<Usuario> BuscarUsuario(int id)
+        {
+            var usuario = await _appDbContext.Usuarios.FindAsync(id);
+
+            if(usuario == null)
+                throw new Exception("Usuário não encontrado.");
+
+            return usuario;
+        }
+
         public async Task CriarUsuario(Usuario usuario)
         {
                 if(ValidarUsuario(usuario))

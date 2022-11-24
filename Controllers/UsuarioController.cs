@@ -31,6 +31,21 @@ public class UsuarioController : ControllerBase
         }
     }
 
+    [HttpGet]
+    [Route("BuscarUsuario")]
+    public async Task<IActionResult> BuscarUsuario(int id)
+    {
+        try
+        {
+            Usuario usuario = await _usuarioService.BuscarUsuario(id);
+            return Ok(usuario);
+        }
+        catch(Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
     [HttpPost]
     [Route("CriarUsuario")]
     public async Task<IActionResult> CriarUsuario(Usuario usuario)

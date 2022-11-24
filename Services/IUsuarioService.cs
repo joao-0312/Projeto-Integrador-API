@@ -6,5 +6,7 @@ namespace Projeto_Integrador_API.Services
     {
         public Task<List<Usuario>> ObterUsuarios();
         public Task CriarUsuario(Usuario usuario);
+        public Task<Usuario> BuscarUsuario(int id);
+
     }
 }
