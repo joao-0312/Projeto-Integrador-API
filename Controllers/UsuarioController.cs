@@ -15,13 +15,19 @@ public class UsuarioController : ControllerBase
         _usuarioService = service;
     }
 
-    //Método temporário criado para testes.
     [HttpGet]
     [Route("ObterUsuarios")]
     public async Task<IActionResult> ObterUsuarios()
     {
-        var usuarios = await _usuarioService.ObterUsuarios();
+        try 
+        {
+            var usuarios = await _usuarioService.ObterUsuarios();
 
-        return Ok(usuarios);
+            return Ok(usuarios);
+        }
+        catch (Exception ex)
+        {
+            return  BadRequest(ex.Message);
+        }
     }
 }
